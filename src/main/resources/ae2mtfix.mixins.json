@@ -1,7 +1,7 @@
 {
   "required": true,
   "package": "cc.unilock.ae2mtfix.mixin",
-  "compatibilityLevel": "JAVA_17",
+  "compatibilityLevel": "JAVA_21",
   "plugin": "cc.unilock.ae2mtfix.MixinPlugin",
   "mixins": [],
   "client": [
@@ -10,5 +10,8 @@
   ],
   "injectors": {
     "defaultRequire": 1
-	}
+	},
+  "overwrites": {
+    "requireAnnotations": true
+  }
 }

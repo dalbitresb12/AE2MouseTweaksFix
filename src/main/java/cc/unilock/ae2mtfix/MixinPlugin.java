@@ -1,6 +1,6 @@
 package cc.unilock.ae2mtfix;
 
-import net.fabricmc.loader.api.FabricLoader;
+import net.neoforged.fml.ModList;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Set;
 
 public class MixinPlugin implements IMixinConfigPlugin {
-	private static final boolean AE2 = FabricLoader.getInstance().isModLoaded("ae2");
-	private static final boolean AE2WTLIB = FabricLoader.getInstance().isModLoaded("ae2wtlib");
+	private static final boolean AE2 = ModList.get().isLoaded("ae2");
+	private static final boolean AE2WTLIB = ModList.get().isLoaded("ae2wtlib");
 
 	@Override
 	public void onLoad(String mixinPackage) {
@@ -24,12 +24,7 @@ public class MixinPlugin implements IMixinConfigPlugin {
 
 	@Override
 	public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-		if (mixinClassName.contains("ae2_compat") && AE2)
-			return true;
-		if (mixinClassName.contains("ae2wtlib_compat") && AE2WTLIB)
-			return true;
-
-		return false;
+		return mixinClassName.contains("ae2_compat") && AE2 || mixinClassName.contains("ae2wtlib_compat") && AE2WTLIB;
 	}
 
 	@Override
