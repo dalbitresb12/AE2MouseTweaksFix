@@ -1,6 +1,7 @@
 package cc.unilock.ae2mtfix;
 
-import net.neoforged.fml.ModList;
+import net.neoforged.fml.loading.LoadingModList;
+
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -9,8 +10,8 @@ import java.util.List;
 import java.util.Set;
 
 public class MixinPlugin implements IMixinConfigPlugin {
-	private static final boolean AE2 = ModList.get().isLoaded("ae2");
-	private static final boolean AE2WTLIB = ModList.get().isLoaded("ae2wtlib");
+	private static final boolean AE2 = LoadingModList.get().getModFileById("ae2") != null;
+	private static final boolean AE2WTLIB = LoadingModList.get().getModFileById("ae2wtlib") != null;
 
 	@Override
 	public void onLoad(String mixinPackage) {
